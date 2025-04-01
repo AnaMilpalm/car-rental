@@ -1,0 +1,21 @@
+.button {
+  display: block;
+  width: 276px;
+  height: 44px;
+  padding: 12px 20px;
+  background-color: var(--button);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background 0.3s ease;
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  border-radius: 12px;
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+}
