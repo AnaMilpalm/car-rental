@@ -28,9 +28,3 @@ button {
   cursor: pointer;
   font: inherit;
 }
-
-body {
-  font-family: "Manrope", sans-serif;
-  line-height: 1.5;
-  color: var(--main);
-}

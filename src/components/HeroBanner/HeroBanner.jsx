@@ -5,7 +5,7 @@ import HeroContent from "../HeroContent/HeroContent";
 const HeroBanner = () => {
   return (
     <div className={s.banner_box}>
-      <div className={s.img_box}>
+      <div className={s.banner_image}>
         <img src={bannerImg} alt="Rent Car" />
       </div>
       <HeroContent />

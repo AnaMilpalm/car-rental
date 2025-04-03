@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog.jsx"));
-const Product = lazy(() => import("./pages/Product/Product.jsx"));
+const CarDetails = lazy(() => import("./pages/CarDetails/CarDetails.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
 
 import "./App.css";
@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog/product:id" element={<Product />} />
+        <Route path="/catalog/cars/:id" element={<CarDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
