@@ -5,20 +5,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCars, setPage } from "../../redux/carsSlice";
 import CarItem from "../../components/CarItem/CarItem";
 import Container from "../../components/Container/Container";
+import Searching from "../../components/Searching/Searching";
+
 const Catalog = () => {
   const dispatch = useDispatch();
   const { cars, pagination, status, error } = useSelector(
     (state) => state.cars
   );
 
+  const filters = useSelector((state) => state.cars.filters);
+
   useEffect(() => {
-    dispatch(fetchCars({ page: pagination.page, limit: pagination.limit }));
-  }, [dispatch, pagination.page, pagination.limit]);
+    dispatch(
+      fetchCars({ page: pagination.page, limit: pagination.limit, ...filters })
+    );
+  }, [dispatch, pagination.page, pagination.limit, filters]);
 
   return (
     <>
       <Header />
+
       <div className={s.catalog}>
+        <Searching />
         {status === "loading" && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         <Container>
@@ -27,7 +35,10 @@ const Catalog = () => {
               <CarItem key={car.id} car={car} />
             ))}
           </div>
-          <button onClick={() => dispatch(setPage(pagination.page + 1))}>
+          <button
+            className={s.button_more}
+            onClick={() => dispatch(setPage(pagination.page + 1))}
+          >
             Load More
           </button>
         </Container>

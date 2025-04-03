@@ -1,6 +1,21 @@
+.catalog {
+  padding: 52px 0 124px 0;
+}
 .car_list {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
   flex-direction: row;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.button_more {
+  border: 1px solid var(--button);
+  padding: 12px 38px;
+  background-color: transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
 }

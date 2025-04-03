@@ -1,12 +1,13 @@
 .banner_box {
   position: relative;
-  width: 100%;
-  max-height: 700px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.banner_image {
+.banner_image img {
+  position: absolute;
   width: 100%;
-  height: auto;
-  max-height: 700px;
+  height: 100%;
   object-fit: cover;
 }

@@ -1,0 +1,66 @@
+.search_box {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  background: white;
+  padding: 32px 0;
+  border-radius: 10px;
+  flex-direction: row;
+  gap: 16px;
+  color: var(--gray);
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.filter select,
+.filter input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 50px;
+  background-color: var(--badges);
+  padding: 12px 28px 12px 16px;
+}
+
+.filter .input_box input {
+  width: 160px;
+  height: 44px;
+}
+
+.filter .input_box input:first-child {
+  border-radius: 12px 0 0 12px !important;
+  border-right: none;
+}
+
+.filter .input_box input:last-child {
+  border-radius: 0 12px 12px 0 !important;
+}
+
+.search_button {
+  border-radius: 12px;
+  padding: 12px 51px;
+  width: 156px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--button);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.filter select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding-right: 60px;
+  background: var(--badges)
+    url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>')
+    no-repeat right 10px center;
+  background-size: 22px;
+}
