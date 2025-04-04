@@ -1,0 +1,98 @@
+.car_details_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 84px 0;
+  text-align: left;
+}
+
+.car_image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.title_box {
+  display: flex;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  text-align: center;
+  color: var(--main);
+  align-items: baseline;
+  .grey {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--gray);
+  }
+}
+
+.address {
+  display: flex;
+  gap: 16px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--button);
+}
+
+.title_third {
+  margin-bottom: 20px;
+}
+
+.rental_conditions {
+  max-width: 183px;
+}
+.condition_box {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.conditions {
+  display: flex;
+  gap: 8px;
+  align-items: anchor-center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  span {
+    padding-bottom: 3px;
+  }
+}
+.car_info {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+  max-width: 488px;
+}
+
+.rental-conditions,
+.specifications,
+.accessories {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.booking-form {
+  grid-column: span 2;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .car-details-container {
+    grid-template-columns: 1fr;
+  }
+  .booking-form {
+    grid-column: span 1;
+  }
+}
