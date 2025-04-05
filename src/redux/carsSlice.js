@@ -32,11 +32,14 @@ export const fetchCars = createAsyncThunk(
   }
 );
 
+const initialFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
 const carsSlice = createSlice({
   name: "cars",
   initialState: {
     cars: [],
     filters: { brand: "", price: "", mileageFrom: "", mileageTo: "" },
+    favorites: initialFavorites,
     pagination: { page: 1, limit: 12 },
     status: "idle",
     error: null,
@@ -48,6 +51,16 @@ const carsSlice = createSlice({
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    toggleFavorite: (state, action) => {
+      const carId = action.payload;
+      const index = state.favorites.findIndex((id) => id === carId);
+      if (index > -1) {
+        state.favorites.splice(index, 1);
+      } else {
+        state.favorites.push(carId);
+      }
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,30 +70,9 @@ const carsSlice = createSlice({
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.status = "succeeded";
         if (state.pagination.page === 1) {
-          state.cars = action.payload.filter((car) => {
-            return (
-              (!state.filters.brand || car.brand === state.filters.brand) &&
-              (!state.filters.price ||
-                car.rentalPrice <= Number(state.filters.price)) &&
-              (!state.filters.mileageFrom ||
-                car.mileage >= Number(state.filters.mileageFrom)) &&
-              (!state.filters.mileageTo ||
-                car.mileage <= Number(state.filters.mileageTo))
-            );
-          });
+          state.cars = action.payload;
         } else {
-          const newCars = action.payload.filter((car) => {
-            return (
-              (!state.filters.brand || car.brand === state.filters.brand) &&
-              (!state.filters.price ||
-                car.rentalPrice <= Number(state.filters.price)) &&
-              (!state.filters.mileageFrom ||
-                car.mileage >= Number(state.filters.mileageFrom)) &&
-              (!state.filters.mileageTo ||
-                car.mileage <= Number(state.filters.mileageTo))
-            );
-          });
-          state.cars = [...state.cars, ...newCars];
+          state.cars = [...state.cars, ...action.payload];
         }
       })
       .addCase(fetchCars.rejected, (state, action) => {
@@ -90,5 +82,5 @@ const carsSlice = createSlice({
   },
 });
 
-export const { setPage, setFilters } = carsSlice.actions;
+export const { setPage, setFilters, toggleFavorite } = carsSlice.actions;
 export default carsSlice.reducer;

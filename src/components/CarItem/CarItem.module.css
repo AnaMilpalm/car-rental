@@ -7,12 +7,24 @@
   }
 }
 .img_box {
+  position: relative;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 16px;
   width: 276px;
   height: 268px;
 }
+.icon,
+.icon_fill {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  fill: var(--badges);
+}
+.icon_fill {
+  fill: var(--button-hover);
+}
+
 .img_box img {
   width: 100%;
   height: 100%;

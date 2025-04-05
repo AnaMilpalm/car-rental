@@ -13,13 +13,9 @@ const Catalog = () => {
     (state) => state.cars
   );
 
-  const filters = useSelector((state) => state.cars.filters);
-
   useEffect(() => {
-    dispatch(
-      fetchCars({ page: pagination.page, limit: pagination.limit, ...filters })
-    );
-  }, [dispatch, pagination.page, pagination.limit, filters]);
+    dispatch(fetchCars({ page: pagination.page, limit: pagination.limit }));
+  }, [dispatch, pagination.page, pagination.limit]);
 
   return (
     <>

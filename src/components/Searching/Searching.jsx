@@ -1,18 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setFilters, fetchCars } from "../../redux/carsSlice";
+import { useState } from "react";
 import s from "./Searching.module.css";
 
 const Searching = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.cars.filters);
+  const [localFilters, setLocalFilters] = useState({
+    brand: "",
+    price: "",
+    mileageFrom: "",
+    mileageTo: "",
+  });
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    dispatch(setFilters({ [name]: value }));
+    setLocalFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSearch = () => {
-    dispatch(fetchCars({ page: 1, limit: 12, filters }));
+    dispatch(setFilters(localFilters));
+    dispatch(fetchCars({ page: 1, limit: 12, filters: localFilters }));
+    setLocalFilters({ brand: "", price: "", mileageFrom: "", mileageTo: "" });
   };
 
   return (
@@ -21,7 +29,7 @@ const Searching = () => {
         <label>Car brand</label>
         <select
           name="brand"
-          value={filters.brand}
+          value={localFilters.brand}
           onChange={handleFilterChange}
         >
           <option value="">Choose a brand</option>
@@ -40,7 +48,7 @@ const Searching = () => {
         <label>Price / 1 hour</label>
         <select
           name="price"
-          value={filters.price}
+          value={localFilters.price}
           onChange={handleFilterChange}
         >
           <option value="">Choose a price</option>
@@ -63,14 +71,14 @@ const Searching = () => {
             type="number"
             name="mileageFrom"
             placeholder="From"
-            value={filters.mileageFrom}
+            value={localFilters.mileageFrom}
             onChange={handleFilterChange}
           />
           <input
             type="number"
             name="mileageTo"
             placeholder="To"
-            value={filters.mileageTo}
+            value={localFilters.mileageTo}
             onChange={handleFilterChange}
           />
         </div>
