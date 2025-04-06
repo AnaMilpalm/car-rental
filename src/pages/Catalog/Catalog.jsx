@@ -6,9 +6,11 @@ import { fetchCars, setPage } from "../../redux/carsSlice";
 import CarItem from "../../components/CarItem/CarItem";
 import Container from "../../components/Container/Container";
 import Searching from "../../components/Searching/Searching";
+import { useLocation } from "react-router-dom";
 
 const Catalog = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { cars, pagination, status, error } = useSelector(
     (state) => state.cars
   );
@@ -28,7 +30,7 @@ const Catalog = () => {
         <Container>
           <div className={s.car_list}>
             {cars.map((car) => (
-              <CarItem key={car.id} car={car} />
+              <CarItem key={car.id} car={car} location={location} />
             ))}
           </div>
           <button

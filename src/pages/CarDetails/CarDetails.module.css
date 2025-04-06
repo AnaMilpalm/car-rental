@@ -11,6 +11,7 @@
 .car_image {
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 40px;
 }
 
 .title_box {
@@ -22,14 +23,19 @@
   text-align: center;
   color: var(--main);
   align-items: baseline;
-  .grey {
+  .gray {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.25;
     color: var(--gray);
   }
 }
-
+.title_form {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
 .address {
   display: flex;
   gap: 16px;
@@ -88,6 +94,13 @@
   border-radius: 8px;
 }
 
+.title_description {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
 @media (max-width: 768px) {
   .car-details-container {
     grid-template-columns: 1fr;

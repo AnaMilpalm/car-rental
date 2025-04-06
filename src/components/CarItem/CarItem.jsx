@@ -4,7 +4,7 @@ import s from "./CarItem.module.css";
 import { toggleFavorite } from "../../redux/carsSlice";
 import sprite from "../../assets/images/icon.svg";
 
-const CarItem = ({ car }) => {
+const CarItem = ({ car, location }) => {
   const city = car.address.split(",")[1]?.trim();
   const country = car.address.split(",")[2]?.trim();
   const mileage = `${car.mileage.toLocaleString("ru-RU")} km`;
@@ -48,7 +48,11 @@ const CarItem = ({ car }) => {
         </div>
       </div>
 
-      <Link to={`/catalog/${car.id}`} className={s.button_details}>
+      <Link
+        to={`/catalog/${car.id}`}
+        state={{ from: location }}
+        className={s.button_details}
+      >
         Read more
       </Link>
     </div>

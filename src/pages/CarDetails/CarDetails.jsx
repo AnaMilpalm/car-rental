@@ -4,30 +4,42 @@ import axios from "axios";
 import s from "./CarDetails.module.css";
 import Header from "../../components/Header/Header";
 import Container from "../../components/Container/Container";
+import BookingForm from "../../components/BookingForm/BookingForm";
+import { useLocation, Link } from "react-router-dom";
 import sprite from "../../assets/images/icon.svg";
 
 const CarDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const backLink = location.state?.from || "/catalog";
+
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log("location:", location);
+
+  console.log("ID from URL:", id);
+
   useEffect(() => {
-    axios
-      .get(`https://car-rental-api.goit.global/cars/${id}`)
-      .then((response) => {
-        setCar(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, [id]);
+    if (!car) {
+      axios
+        .get(`https://car-rental-api.goit.global/cars/${id}`)
+        .then((res) => {
+          setCar(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }
+  }, [id, car]);
 
   if (loading) return <p>Loading car details...</p>;
   if (error) return <p>Error: {error}</p>;
-  const titleGrey = car?.id ? String(car.id).slice(0, 4) : "N/A";
+  if (!car) return <p>No car found</p>;
+  const titleGray = car?.id ? String(car.id).slice(0, 4) : "N/A";
   const city = car?.address ? String(car.address).split(",")[1]?.trim() : "N/A";
   const country = car?.address
     ? String(car.address).split(",")[2].trim()
@@ -39,19 +51,17 @@ const CarDetails = () => {
   return (
     <>
       <Header />
+      <Link to={backLink}>← Back to catalog</Link>
       <Container>
         <div className={s.car_details_container}>
           <div className={s.order_box}>
             <img src={car.img} alt={car.brand} className={s.car_image} />
             <div className={s.booking_form}>
-              <h3 className={s.title_third}>Book your car now</h3>
-              <form>
-                <input type="text" placeholder="Name*" />
-                <input type="email" placeholder="Email*" />
-                <input type="date" placeholder="Booking date" />
-                <textarea placeholder="Comment"></textarea>
-                <button type="submit">Send</button>
-              </form>
+              <h3 className={s.title_form}>Book your car now</h3>
+              <div className={s.title_description}>
+                Stay connected! We are always ready to help you.
+              </div>
+              <BookingForm />
             </div>
           </div>
 
@@ -60,7 +70,7 @@ const CarDetails = () => {
               <span className={s.title_details}>
                 {car.brand} {car.model}, {car.year}
               </span>
-              <span className={s.grey}>id: {titleGrey}</span>
+              <span className={s.gray}>Id: {titleGray}</span>
             </h2>
             <div className={s.address}>
               <span className={s.part}>
