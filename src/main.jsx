@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { store, persistor } from "./redux/store"; // імпортуємо обидва одразу
+import { store, persistor } from "./redux/store";
 import App from "./App.jsx";
 import { PersistGate } from "redux-persist/integration/react";
 
