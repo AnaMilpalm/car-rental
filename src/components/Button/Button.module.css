@@ -8,12 +8,27 @@
   border-radius: 5px;
   text-align: center;
   transition: background 0.3s ease;
-  margin-top: 40px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
+  margin-top: 16px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
   border-radius: 12px;
-  height: 44px;
+  @media screen and (min-width: 768px) {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  @media screen and (min-width: 1040px) {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 276px;
+    padding: 12px 20px;
+    line-height: 1.25;
+    margin-top: 40px;
+    height: 44px;
+    width: 276px;
+  }
 }
 
 .button:hover {

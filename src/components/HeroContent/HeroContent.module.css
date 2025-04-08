@@ -1,25 +1,51 @@
 .hero_content {
   position: absolute;
-  top: 70%;
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 783px;
+  /* max-width: px; */
   text-align: center;
   color: var(--white);
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+    top: 70%;
+    left: 50%;
+  }
 }
 
 .banner_title {
-  font-weight: 700;
-  font-size: 60px;
+  font-weight: 600;
+  font-size: 20px;
   line-height: 1.2;
+  @media screen and (min-width: 768px) {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  @media screen and (min-width: 1040px) {
+    font-size: 39px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 55px;
+  }
 }
 
 .banner_description {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33333;
+  font-size: 11px;
+  line-height: 1.333;
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
+  @media screen and (min-width: 1040px) {
+    font-size: 21px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+  }
 }
